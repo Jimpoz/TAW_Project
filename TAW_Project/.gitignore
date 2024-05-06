@@ -3,6 +3,7 @@
 /taw_venv
 /.angular
 .editorconfig
+/api/index.js
 
 # Compiled output
 /dist
