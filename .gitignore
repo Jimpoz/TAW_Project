@@ -48,5 +48,6 @@ po/*~
 # RStudio Connect folder
 rsconnect/
 
-# Ignore the python virtual environment
-taw_venv/
+taw-project/backend/node_modules/
+
+taw-project/frontend/node_modules/
