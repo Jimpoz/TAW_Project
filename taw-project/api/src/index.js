@@ -6,7 +6,7 @@ const multer=require("multer");
 var app=Express();
 app.use(cors());
 
-var CONNECTION_STRING = "mongodb+srv://jimpo:<passwors>@taw-project.tgmtibt.mongodb.net/?retryWrites=true&w=majority&appName=taw-project";
+var CONNECTION_STRING = "mongodb+srv://jimpo:<password>@taw-project.tgmtibt.mongodb.net/?retryWrites=true&w=majority&appName=taw-project";
 
 var DATABASE="taw-project";
 var database;
@@ -18,6 +18,8 @@ app.listen(5038, () => {
     });
 });
 
+// not connecting, not displaying the error either
+// check for network access, add IP address, check user and DB status
 app.get('/app/tawproject/getsomething', (request, response) => {
     console.log("Received GET request for /app/tawproject/getsomething");
     database.collection("tawcollection").find({}).toArray((error, result) => {
