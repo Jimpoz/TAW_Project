@@ -1,37 +1,78 @@
-var Express = require("express");
-var Mongoclient = require("mongodb").MongoClient;
-var cors=require("cors");
-const multer=require("multer");
+/**
+const express = require("express");
+const cors = require("cors");
+const mongoose = require("mongoose");
 
-var app=Express();
+const app = express();
 app.use(cors());
 
-var CONNECTION_STRING = "mongodb+srv://jimpo:<password>@taw-project.tgmtibt.mongodb.net/?retryWrites=true&w=majority&appName=taw-project";
+const CONNECTION_STRING = "mongodb+srv://jimpo:cYqBwOpvQ7AcnP6k@taw-project.tgmtibt.mongodb.net/?retryWrites=true&w=majority";
 
-var DATABASE="taw-project";
-var database;
+const DATABASE = "taw-project";
 
-app.listen(5038, () => {
-    Mongoclient.connect(CONNECTION_STRING, (error, client) => {
-        database = client.db(DATABASE);
-        console.log("MongoDB connection successful");
-    });
+mongoose.connect(CONNECTION_STRING, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+  useCreateIndex: true
+})
+.then(() => {
+  console.log("MongoDB connection successful");
+})
+.catch((error) => {
+  console.error("MongoDB connection error:", error);
 });
 
-// not connecting, not displaying the error either
-// check for network access, add IP address, check user and DB status
-app.get('/app/tawproject/getsomething', (request, response) => {
-    console.log("Received GET request for /app/tawproject/getsomething");
-    database.collection("tawcollection").find({}).toArray((error, result) => {
-        if (error) {
-            console.error("Error querying database:", error);
-            response.sendStatus(500); // Internal Server Error
-            return;
-        }
-        response.json(result);
-    });
-}); 
+// Define Schema for your collection
+const genericSchema = new mongoose.Schema({}, { strict: false });
+
+// Define your Model
+const GenericModel = mongoose.model("GenericModel", genericSchema);
+
+app.get('/testGet', async (request, response) => {
+    console.log("Received GET request for /testGet");
+    try {
+        const data = await GenericModel.find({});
+        console.log(data);
+        response.json(data); // Sending data as JSON response
+    } catch (error) {
+        console.error("Error occurred:", error);
+        response.status(500).json({ error: "An error occurred while fetching data" });
+    }
+});
 
 app.get('/', (req, res) => {
     res.send("Hello, world!");
 });
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
+
+*/
+const { MongoClient, ServerApiVersion } = require('mongodb');
+const uri = "mongodb+srv://jimpo:cYqBwOpvQ7AcnP6k@taw-project.tgmtibt.mongodb.net/?retryWrites=true&w=majority&appName=taw-project";
+
+// Create a MongoClient with a MongoClientOptions object to set the Stable API version
+const client = new MongoClient(uri, {
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  }
+});
+
+async function run() {
+  try {
+    // Connect the client to the server	(optional starting in v4.7)
+    await client.connect();
+    // Send a ping to confirm a successful connection
+    await client.db("admin").command({ ping: 1 });
+    console.log("Pinged your deployment. You successfully connected to MongoDB!");
+  } finally {
+    // Ensures that the client will close when you finish/error
+    await client.close();
+  }
+}
+run().catch(console.dir);

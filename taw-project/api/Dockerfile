@@ -1,5 +1,5 @@
 # Create docker image for the API
-FROM node:19
+FROM node:20
 
 WORKDIR /app
 
@@ -11,4 +11,4 @@ COPY . .
 
 EXPOSE 3000
 
-CMD ["npm", "start"]
+CMD [ "npm", "run", "start" ]
