@@ -1,5 +1,5 @@
 # Create docker image for the API
-FROM node:19
+FROM node:20
 
 WORKDIR /app
 
@@ -11,4 +11,4 @@ COPY . .
 
 EXPOSE 8080
 
-CMD ["http-server", "-p", "8080"]
+CMD [ "npm", "run", "start" ]
