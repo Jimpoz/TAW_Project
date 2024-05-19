@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    margin: 50px auto;
+}
+
+.body {
+    position: relative;
+    width: 720px;
+    height: 440px;
+    margin: 20px auto;
+    border: 1px solid #ddd;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    display: flex;
+}
+
+.box-1 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.box-2 {
+    padding: 10px;
+}
+
+.box-1,
+.box-2 {
+    width: 50%;
+}
+
+.h-1 {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.text-muted {
+    font-size: 14px;
+}
+
+.container .box {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid transparent;
+    text-decoration: none;
+    color: #615f5fdd;
+}
+
+.box:active,
+.box:visited {
+    border: 2px solid #ee82ee;
+}
+
+.box:hover {
+    border: 2px solid #ee82ee;
+}
+
+.btn.btn-primary {
+  background-color: grey;
+  color: green;
+  border: 1px solid green; /* Add border */
+  padding: 8px 16px; /* Add padding for better click/tap area */
+  font-size: 14px;
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+.btn.btn-primary:hover {
+  background-color: lightgrey; /* Change background color on hover */
+}
+
+/* Add style for button with icon */
+.btn.btn-primary i {
+  margin-left: 5px; /* Add margin to separate icon from text */
+}
+
+.btn.btn-primary .fas.fa-chevron-right {
+    font-size: 12px;
+}
+
+.footer .p-color {
+    color: #ee82ee;
+}
+
+.footer.text-muted {
+    font-size: 10px;
+}
+
+
+.fas.fa-times:hover {
+    color: #ff0000;
+}
+
+@media (max-width: 767px) {
+    body {
+        padding: 10px;
+    }
+
+    .body {
+        width: 100%;
+        height: auto;
+        flex-direction: column;
+    }
+
+    .box-1 {
+        width: 100%;
+    }
+
+    .box-2 {
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .body {
+        width: 95%;
+        height: auto;
+        margin: 20px auto;
+    }
+
+    .box-1, .box-2 {
+        width: 50%;
+        height: auto;
+    }
+
+    .box-2 {
+        padding: 20px;
+    }
+}
+
+/* center the .app-title in the html page */
+.app-title {
+    text-align: center;
+}
