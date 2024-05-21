@@ -1,56 +1,38 @@
-/**
-const express = require("express");
-const cors = require("cors");
-const mongoose = require("mongoose");
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const app = express();
+const port = 3000;
+
 app.use(cors());
+app.use(bodyParser.json());
 
-const CONNECTION_STRING = "mongodb+srv://jimpo:cYqBwOpvQ7AcnP6k@taw-project.tgmtibt.mongodb.net/?retryWrites=true&w=majority";
-
-const DATABASE = "taw-project";
-
-mongoose.connect(CONNECTION_STRING, {
+mongoose.connect('mongodb://localhost:27017/taw-project', {
   useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false,
-  useCreateIndex: true
-})
-.then(() => {
-  console.log("MongoDB connection successful");
-})
-.catch((error) => {
-  console.error("MongoDB connection error:", error);
+  useUnifiedTopology: true
 });
 
-// Define Schema for your collection
-const genericSchema = new mongoose.Schema({}, { strict: false });
-
-// Define your Model
-const GenericModel = mongoose.model("GenericModel", genericSchema);
-
-app.get('/testGet', async (request, response) => {
-    console.log("Received GET request for /testGet");
-    try {
-        const data = await GenericModel.find({});
-        console.log(data);
-        response.json(data); // Sending data as JSON response
-    } catch (error) {
-        console.error("Error occurred:", error);
-        response.status(500).json({ error: "An error occurred while fetching data" });
-    }
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', () => {
+  console.log('Connected to MongoDB');
 });
 
+// Endpoint API
 app.get('/', (req, res) => {
-    res.send("Hello, world!");
+  res.send('Hello World!');
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
 });
 
-*/
+// Path: taw-project/api/src/index.js 
+
+
+/*
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = "mongodb+srv://jimpo:cYqBwOpvQ7AcnP6k@taw-project.tgmtibt.mongodb.net/?retryWrites=true&w=majority&appName=taw-project";
 
@@ -76,3 +58,4 @@ async function run() {
   }
 }
 run().catch(console.dir);
+*/
