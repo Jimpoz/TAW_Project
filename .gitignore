@@ -51,3 +51,5 @@ rsconnect/
 # Node_modules
 taw-project/api/node_modules/
 taw-project/ui/node_modules/
+taw-project/api/.env
+taw-project/api/.env
