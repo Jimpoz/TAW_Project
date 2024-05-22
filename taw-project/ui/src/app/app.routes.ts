@@ -6,32 +6,18 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { AppComponent } from './app.component';
 
 export const routes: Routes = [
-    { 
-        path: '', redirectTo: 'signup', pathMatch: 'full'
-    },
-    {
-        path: 'login', component: LoginComponent
-    },
-    {
-        path: 'signup', component: SignupComponent
-    }
+    { path: '', component: LoginComponent},
+    { path: 'login', component: LoginComponent },
+    { path: 'signup', component: SignupComponent },
+    { path: '**', redirectTo: '' } // Redirect unknown paths to Home
 ];
 
 @NgModule({
-    imports: [
-        RouterModule.forRoot(routes),
-        BrowserModule,
-        HttpClientModule,
-        BrowserModule,
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        ],
-    exports: [RouterModule],
-    providers: []
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
   })
   export class AppRoutingModule { }
   

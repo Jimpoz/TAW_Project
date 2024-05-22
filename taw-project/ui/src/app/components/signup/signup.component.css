@@ -14,13 +14,13 @@
 .body {
     position: relative;
     width: 720px;
-    height: 440px;
     margin: 20px auto;
     border: 1px solid #ddd;
     border-radius: 18px;
     overflow: hidden;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     display: flex;
+    flex-wrap: wrap; /* Allow wrapping of elements */
 }
 
 .box-1 img {
@@ -31,11 +31,15 @@
 
 .box-2 {
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%; /* Full width on smaller screens */
 }
 
-.box-1,
-.box-2 {
-    width: 50%;
+.box-1, .box-2 {
+    flex: 1 1 50%; /* Flex-grow, flex-shrink, flex-basis */
+    height: auto; /* Let the height adjust automatically */
 }
 
 .h-1 {
@@ -61,29 +65,29 @@
 
 .box:active,
 .box:visited {
-    border: 2px solid #ee82ee;
+    border: 2px solid green;
 }
 
 .box:hover {
-    border: 2px solid #ee82ee;
+    border: 2px solid green;
 }
 
 .btn.btn-primary {
-  background-color: grey;
-  color: green;
-  border: 1px solid green; /* Add border */
-  padding: 8px 16px; /* Add padding for better click/tap area */
-  font-size: 14px;
-  cursor: pointer; /* Change cursor to pointer on hover */
+    color: green;
+    border: 1px solid green; /* Add border */
+    padding: 8px 16px; /* Add padding for better click/tap area */
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px; /* Add border radius */
 }
 
 .btn.btn-primary:hover {
-  background-color: lightgrey; /* Change background color on hover */
+    background-color: lightgrey; /* Change background color on hover */
 }
 
 /* Add style for button with icon */
 .btn.btn-primary i {
-  margin-left: 5px; /* Add margin to separate icon from text */
+    margin-left: 5px; /* Add margin to separate icon from text */
 }
 
 .btn.btn-primary .fas.fa-chevron-right {
@@ -91,13 +95,12 @@
 }
 
 .footer .p-color {
-    color: #ee82ee;
+    color: green;
 }
 
 .footer.text-muted {
     font-size: 10px;
 }
-
 
 .fas.fa-times:hover {
     color: #ff0000;
@@ -114,13 +117,9 @@
         flex-direction: column;
     }
 
-    .box-1 {
-        width: 100%;
-    }
-
+    .box-1,
     .box-2 {
         width: 100%;
-        height: auto;
     }
 }
 
@@ -144,4 +143,20 @@
 /* center the .app-title in the html page */
 .app-title {
     text-align: center;
+}
+
+.form-control {
+    width: calc(100% - 20px); /* Adjust the width as needed */
+    height: 40px; /* Adjust the height as needed */
+    border-radius: 8px; /* Rounded corners */
+    border: 1px solid #ccc; /* Gray border */
+    padding: 0 10px; /* Adjust padding as needed */
+    font-size: 16px; /* Adjust font size as needed */
+    margin-bottom: 10px; /* Adjust margin as needed */
+}
+
+.password-strength {
+    font-size: 14px;
+    color: #666;
+    margin-top: 5px;
 }
