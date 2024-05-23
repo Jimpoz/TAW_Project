@@ -1,9 +1,12 @@
+// src/index.js
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const { Int32 } = require('mongodb');
-require('dotenv').config({ path: '../.env' });
+require('dotenv').config({ path: require('path').resolve(__dirname, '../.env') });
+
+// models
+const { studentSchema } = require('./models/student.model.ts');
 
 const app = express();
 const port = 3000;
@@ -21,18 +24,6 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
   console.log('Connected to MongoDB');
-});
-
-// Define the schema for the student data
-const studentSchema = new mongoose.Schema({
-  name: String,
-  surname: String,
-  username: String,
-  email: String,
-  password: String,
-  student_id: Number,
-  birth: Date,
-  phone: Number,
 });
 
 // Create the Mongoose model
