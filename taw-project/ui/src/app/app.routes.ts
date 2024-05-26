@@ -7,11 +7,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
+import { HomepageComponent } from './components/homepage/homepage.component';
 
 export const routes: Routes = [
     { path: '', component: LoginComponent},
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignupComponent },
+    { path: 'homepage', component: HomepageComponent },
     { path: '**', redirectTo: '' } // Redirect unknown paths to Home
 ];
 
